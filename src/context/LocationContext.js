@@ -37,5 +37,6 @@ const stopLoading = dispatch => () => {
 export const { Context, Provider } = createDataContext(
     listing,
     { reset, add_name, startLoading, stopLoading },
-    { locationId: '', loading: false }
+    { locationId: '', loading: false },
+    []
 );

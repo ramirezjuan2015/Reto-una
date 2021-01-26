@@ -10,7 +10,7 @@ const Categoria = (state, action) => {
     }
 };
 
-const go = dispatch => async () => {
+const go = (dispatch) => async () => {
     const accion = await Conection.get('/category');
     dispatch({ type: 'category', payload: accion.data });
 };

@@ -33,7 +33,7 @@ const Animal = ({ navigation }) => {
                 }
                 <Spacer>
                     <Button
-                        buttonStyle={{ backgroundColor: 'orange' }}
+                        buttonStyle={{ backgroundColor: 'orange', height: 50, borderRadius: 10 }}
                         title="Crea un animal"
                         onPress={() => navigation.navigate('RegistroAnimal',
                             { categoryId: _id })} />
@@ -51,11 +51,13 @@ Animal.navigationOptions = {
 const style = StyleSheet.create({
     container: {
         marginTop: 10,
-        marginLeft: 10
+        marginLeft: 10,
+        marginRight: 10
     },
     opacityStyle: {
         marginTop: 5,
         marginRight: 10,
+        marginLeft: 10,
     }
 });
 

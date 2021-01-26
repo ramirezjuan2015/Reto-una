@@ -6,7 +6,6 @@ import { Context as CategoriasContext } from '../context/CategoriasContext';
 
 const maqueta = ({ navigation }) => {
     const { state, go } = useContext(CategoriasContext);
-    const { opacityStyle } = styles
 
     return (
         <View style={styles.container}>
@@ -17,7 +16,7 @@ const maqueta = ({ navigation }) => {
                 keyExtractor={item => item._id}
                 renderItem={({ item }) => {
                     return (
-                        <TouchableOpacity style={opacityStyle} onPress={() => navigation.navigate
+                        <TouchableOpacity style={styles.opacity} onPress={() => navigation.navigate
                             ('Animal', { _id: item._id })}>
                             <ListItem chevron title={item.name} />
                         </TouchableOpacity>
@@ -43,7 +42,7 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         textAlign: 'center'
     },
-    opacityStyle: {
+    opacity: {
         marginRight: 10,
         marginLeft: 10,
         marginTop: 5,

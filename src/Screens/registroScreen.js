@@ -7,9 +7,10 @@ import NavLink from '../Componentes/NavLink';
 
 const registroScreen = ({ navigation }) => {
   const { state, registro, clearErrorMessage } = useContext(AuthContext);
+  const { container } = style
 
   return (
-    <View style={styles.container}>
+    <View style={container}>
       <NavigationEvents onWillFocus={clearErrorMessage} />
       <AuthForm
         errorMessage={state.errorMessage}
@@ -30,7 +31,7 @@ registroScreen.navigationOptions = () => {
   };
 };
 
-const styles = StyleSheet.create({
+const style = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',

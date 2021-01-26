@@ -7,26 +7,26 @@ import { FontAwesome } from '@expo/vector-icons';
 
 const AccountScree = ({ navigation }) => {
   const { signout } = useContext(AuthContext);
-  const { titleStyle, containerStyle,} = style
+  const { titleStyle, container, } = style
 
   return (
-    <View style={containerStyle}>
-        <Text style={titleStyle}>¿Estas seguro o segura de cerrar sesión?</Text>
-        <Spacer>
-        <Button buttonStyle={{backgroundColor: 'lightgrey', borderRadius: 7}} title="Si" 
-        onPress={signout}/>
-        </Spacer>
-        <Spacer>
-        <Button buttonStyle={{backgroundColor: 'lightgrey', borderRadius: 7}} title="No" 
-        onPress={() => navigation.navigate('Maqueta')}/>
-        </Spacer>
+    <View style={container}>
+      <Text style={titleStyle}>¿Estas seguro o segura de cerrar sesión?</Text>
+      <Spacer>
+        <Button buttonStyle={{ backgroundColor: 'lightgrey', borderRadius: 7 }} title="Si"
+          onPress={signout} />
+      </Spacer>
+      <Spacer>
+        <Button buttonStyle={{ backgroundColor: 'lightgrey', borderRadius: 7 }} title="No"
+          onPress={() => navigation.navigate('Maqueta')} />
+      </Spacer>
     </View>
   );
 };
 
 AccountScree.navigationOptions = {
   title: 'Cerrar Sesión',
-  tabBarIcon: <FontAwesome name="gear" size={20} color="orange"/>
+  tabBarIcon: <FontAwesome name="gear" size={20} color="orange" />
 };
 
 const style = StyleSheet.create({
@@ -34,7 +34,7 @@ const style = StyleSheet.create({
     fontSize: 30,
     textAlign: 'center'
   },
-  containerStyle: {
+  container: {
     marginTop: 300
   }
 });

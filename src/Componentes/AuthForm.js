@@ -12,11 +12,16 @@ const AuthForm = ({ headerText, errorMessage, onSubmit, submitButtonText }) => {
   const {
     state: { loading },
     startLoading,
+    stopLoading,
   } = useContext(AuthContext);
 
   const load = () => {
     startLoading();
-    onSubmit({ email, password });
+    try {
+      onSubmit({ email, password });
+    } catch (error) {
+      stopLoading();
+    }
   };
 
   return (

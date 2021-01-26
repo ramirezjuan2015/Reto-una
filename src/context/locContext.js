@@ -15,9 +15,8 @@ const got = (dispatch) => async () => {
   dispatch({ type: "location", payload: accion.data });
 };
 
-const location = () => async (animalId, markers) => {
-  await Conection.post("/location", { animalId, markers });
-  console.log(locationId);
+const location = () => async (animalId, markers, name) => {
+  await Conection.post("/location", { animalId, markers, name });
 };
 
 export const { Context, Provider } = createDataContext(

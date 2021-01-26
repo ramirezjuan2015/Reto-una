@@ -11,32 +11,37 @@ const creacionAnimal = ({ categoryId, route, }) => {
         state: { name, loading },
         add_name,
         startLoading,
+        stopLoading,
         reset
     } = useContext(animalsContext);
     const [saveList] = animals();
 
     const LogoScreen = () => {
         startLoading();
-        saveList(categoryId);
+        try {
+            saveList(categoryId);
+        } catch (error) {
+            stopLoading();
+        }
     };
-    const { container } = style
+    const { container, Text, TextInput } = style
     console.log(route?.params?.categoryId)
 
     return (
         <View style={container}>
-            <Text h3 style={style.Text}>Crea tu nuevo Animal</Text>
+            <Text h3 style={Text}>Crea tu nuevo Animal</Text>
             <Spacer>
-                <TextInput
+                <TextInput style={TextInput}
                     value={name}
                     onChangeText={add_name}
                     placeholder="Ingrese un Animal" />
             </Spacer>
             <Spacer>
                 {loading ? (
-                    <Spinner style={style.Spinner} />
+                    <Spinner />
                 ) : (
                         <Button
-                            buttonStyle={{ backgroundColor: 'orange' }}
+                            buttonStyle={{ backgroundColor: 'orange', height: 50 }}
                             title="Guardar Animal"
                             onPress={LogoScreen} />
                     )}
@@ -49,10 +54,14 @@ const style = StyleSheet.create({
     Text: {
         textAlign: 'center',
     },
-
-    Spinner: {
-        color: 'green',
-    }
+    TextInput: {
+        fontSize: 20,
+        marginTop: 10,
+    },
+    container: {
+        marginLeft: 10,
+        marginRight: 10
+    },
 });
 
 export default creacionAnimal;

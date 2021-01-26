@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
 import { View, StyleSheet, TextInput, Text, TouchableOpacity } from "react-native";
 import { Button } from "react-native-elements";
-import Spacer from "../Componentes/Spacer";
 import { Context as LocationContext } from "../context/LocationContext";
 import Locacion from "../hooks/locacion";
+import Spacer from "../Componentes/Spacer";
 import Spinner from "../Componentes/spinner";
 import MapView, { Marker } from "react-native-maps";
 
@@ -19,7 +19,7 @@ const randomColor = () => {
         .padStart(6, 0)}`;
 };
 
-const Location = ({ animalId, provider }) => {
+const Location = ({ animalId, route, provider }) => {
     const {
         state: { locationId, loading },
         add_name,
@@ -34,11 +34,12 @@ const Location = ({ animalId, provider }) => {
         latitudeDelta: LATITUDE_DELTA,
         longitudeDelta: LONGITUDE_DELTA,
     });
+    console.log(animalId)
 
     const Screen = () => {
         startLoading();
         try {
-            saveList(animalId);
+            saveList(animalId, markers.map(marker => marker.coordinate));
         } catch (error) {
             stopLoading();
         }
@@ -54,7 +55,6 @@ const Location = ({ animalId, provider }) => {
             },
         ]);
     };
-
     return (
         <View>
             <Spacer>
@@ -69,7 +69,7 @@ const Location = ({ animalId, provider }) => {
                     <Spinner />
                 ) : (
                         <Button
-                            buttonStyle={{ backgroundColor: "orange", height: 50 }}
+                            buttonStyle={{ backgroundColor: "orange", height: 50, borderRadius: 10 }}
                             title="Guardar locación"
                             onPress={Screen}
                         />
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
         marginTop: 20,
     },
     TextInput: {
-        fontSize: 20,
+        fontSize: 25,
     }
 });
 

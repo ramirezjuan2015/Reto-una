@@ -8,7 +8,7 @@ import { FontAwesome5 } from '@expo/vector-icons';
 const GuardarMapa = ({ navigation }) => {
     return (
         <SafeAreaView forceInset={{ top: 'always' }}>
-            <Text h2 style={style.Text}>Mapa</Text>
+            <Text h2 style={style.styleText}>Mapa</Text>
             <Map locationId={navigation.getParam('locationId')} />
         </SafeAreaView>
     );
@@ -20,7 +20,7 @@ GuardarMapa.navigationOptions = {
 };
 
 const style = StyleSheet.create({
-    Text: {
+    styleText: {
         textAlign: 'center',
         marginTop: 10,
         backgroundColor: 'yellow'

@@ -12,7 +12,7 @@ export default () => {
 
   const saveList = async (animalId, markers) => {
     console.log(locationId, animalId);
-    await location(animalId, markers);
+    await location(animalId, markers, locationId);
     reset();
     got();
     navigate("Guardar");

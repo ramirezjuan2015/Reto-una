@@ -7,9 +7,10 @@ import { Context } from '../context/AuthContext';
 
 const inscribirseScreen = () => {
   const { state, inscribirse, clearErrorMessage } = useContext(Context);
+  const { container } = style
 
   return (
-    <View style={styles.container}>
+    <View style={container}>
       <NavigationEvents onWillFocus={clearErrorMessage} />
       <AuthForm
         headerText=""
@@ -31,7 +32,7 @@ inscribirseScreen.navigationOptions = () => {
   };
 };
 
-const styles = StyleSheet.create({
+const style = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
