@@ -24,14 +24,14 @@ const creacionAnimal = ({ categoryId, route, }) => {
             stopLoading();
         }
     };
-    const { container, Text, TextInput } = style
+
     console.log(route?.params?.categoryId)
 
     return (
-        <View style={container}>
-            <Text h3 style={Text}>Crea tu nuevo Animal</Text>
+        <View style={style.container}>
+            <Text h3 style={style.Text}>Crea tu nuevo Animal</Text>
             <Spacer>
-                <TextInput style={TextInput}
+                <TextInput style={style.TextInput}
                     value={name}
                     onChangeText={add_name}
                     placeholder="Ingrese un Animal" />

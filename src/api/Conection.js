@@ -3,13 +3,14 @@ import { AsyncStorage } from "react-native";
 
 let url;
 if (__DEV__) {
-  url = 'http://f32c3c18b720.ngrok.io';
+  url = 'http://dcce1767d833.ngrok.io';
 } else {
-  url = 'http://f32c3c18b720.ngrok.io';
+  url = '';
 }
 const instance = axios.create({
   baseURL: url,
 });
+
 //instance.defaults.headers = {
 //contentType: "application/json"
 //}

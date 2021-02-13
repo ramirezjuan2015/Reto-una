@@ -1,15 +1,16 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { Text } from 'react-native-elements';
 import { SafeAreaView } from 'react-navigation';
-import Map from '../Componentes/Map';
+import Location from '../Componentes/LocationComponente';
 import { FontAwesome5 } from '@expo/vector-icons';
+import { Context as LocationContext } from '../context/LocationContext'
 
 const GuardarMapa = ({ navigation }) => {
+
     return (
         <SafeAreaView forceInset={{ top: 'always' }}>
-            <Text h2 style={style.styleText}>Mapa</Text>
-            <Map locationId={navigation.getParam('locationId')} />
+            <Location locationId={navigation.getParam('locationId')} location={navigation.getParam('location')} animalId={navigation.getParam('location').animalId} />
         </SafeAreaView>
     );
 };
@@ -23,7 +24,7 @@ const style = StyleSheet.create({
     styleText: {
         textAlign: 'center',
         marginTop: 10,
-        backgroundColor: 'yellow'
+
     }
 });
 

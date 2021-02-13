@@ -20,14 +20,14 @@ const GuardarLocacion = ({ navigation }) => {
             <NavigationEvents onWillFocus={got} />
 
             <View style={container}>
-                {
-                    locations.map(location =>
 
-                        <TouchableOpacity style={opacityStyle} onPress={() => navigation.navigate
-                            ('GuardarMapa', { location: animalId.markers })}>
-                            <ListItem chevron title={location.name} />
-                        </TouchableOpacity>
-                    )
+                {locations.map(location =>
+
+                    <TouchableOpacity style={opacityStyle} onPress={() => navigation.navigate
+                        ('GuardarMapa', { locationId: location._id, location })}>
+                        <ListItem chevron title={location.name} />
+                    </TouchableOpacity>
+                )
                 }
                 <Spacer>
                     <Button
@@ -54,8 +54,9 @@ const style = StyleSheet.create({
     },
     opacityStyle: {
         marginRight: 10,
-        marginLeft: 10
+        marginLeft: 10,
+        marginTop: 5,
     },
 });
 
-export default GuardarLocacion;
+export default GuardarLocacion; 

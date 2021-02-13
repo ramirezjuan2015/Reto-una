@@ -11,7 +11,6 @@ export default () => {
   const { location, got } = useContext(locContext);
 
   const saveList = async (animalId, markers) => {
-    console.log(locationId, animalId);
     await location(animalId, markers, locationId);
     reset();
     got();

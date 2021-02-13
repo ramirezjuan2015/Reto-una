@@ -34,6 +34,12 @@ const stopLoading = dispatch => () => {
     dispatch({ type: 'stop_loading' });
 };
 
+/* const fillById = dispatch => async (id) => {
+    const response = await Conection.get('/location/' + id)
+    dispatch({ type: 'location', payload: response.data });
+    return response.data
+}; */
+
 export const { Context, Provider } = createDataContext(
     listing,
     { reset, add_name, startLoading, stopLoading },

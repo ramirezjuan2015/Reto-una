@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { View, StyleSheet, TextInput, Text, TouchableOpacity } from "react-native";
 import { Button } from "react-native-elements";
 import { Context as LocationContext } from "../context/LocationContext";
@@ -13,28 +13,22 @@ const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA;
 let id = 0;
 
-const randomColor = () => {
-    return `#${Math.floor(Math.random() * 16777215)
-        .toString(16)
-        .padStart(6, 0)}`;
-};
-
-const Location = ({ animalId, route, provider }) => {
+const Location = ({ animalId, provider, location }) => {
     const {
         state: { locationId, loading },
         add_name,
         startLoading,
         stopLoading,
     } = useContext(LocationContext);
+    console.log("LOCATION", location)
     const [saveList] = Locacion();
     const [markers, setMarkers] = useState([]);
-    const [region, setRegion] = useState({
+    const [region] = useState({
         latitude: LATITUDE,
         longitude: LONGITUDE,
         latitudeDelta: LATITUDE_DELTA,
         longitudeDelta: LONGITUDE_DELTA,
     });
-    console.log(animalId)
 
     const Screen = () => {
         startLoading();
@@ -43,6 +37,12 @@ const Location = ({ animalId, route, provider }) => {
         } catch (error) {
             stopLoading();
         }
+    };
+
+    const randomColor = () => {
+        return `#${Math.floor(Math.random() * 16777215)
+            .toString(16)
+            .padStart(6, 0)}`;
     };
 
     const onMapPress = (e) => {
@@ -55,6 +55,32 @@ const Location = ({ animalId, route, provider }) => {
             },
         ]);
     };
+
+    useEffect(() => {
+        if (location) {
+            add_name(location.name)
+            setMarkers(location.markers.map(marker => ({
+                color: randomColor(),
+                key: marker._id, coordinate: marker
+            })))
+        }
+    }, [location])
+
+    /* useEffect(() => {
+        if (item.id == puntoSeleccionado.id)
+            return index
+        console.log(puntos);
+    }), [location] */
+
+    /*  useEffect(() => {
+         if (location) {
+             setMarkers(location.markers.map(marker => ({
+                 key: marker._id, delete: marker
+             })))
+         }
+     }
+     ) */
+
     return (
         <View>
             <Spacer>
@@ -69,7 +95,10 @@ const Location = ({ animalId, route, provider }) => {
                     <Spinner />
                 ) : (
                         <Button
-                            buttonStyle={{ backgroundColor: "orange", height: 50, borderRadius: 10 }}
+                            buttonStyle={{
+                                backgroundColor: "orange", height: 50,
+                                borderRadius: 10
+                            }}
                             title="Guardar locación"
                             onPress={Screen}
                         />
@@ -83,20 +112,24 @@ const Location = ({ animalId, route, provider }) => {
                     onPress={onMapPress}
                 >
                     {markers.map((marker) => (
+
                         <Marker
-                            key={marker.key}
+                            key={marker.id}
                             coordinate={marker.coordinate}
                             pinColor={marker.color}
                         />
                     ))}
                 </MapView>
                 <View style={styles.buttonContainer}>
-                    <TouchableOpacity
-                        onPress={() => setMarkers([])}
-                        style={styles.bubble}
-                    >
-                        <Text>Toque para crear un marcador</Text>
-                    </TouchableOpacity>
+                    <Spacer>
+                        <TouchableOpacity
+                            onPress={() => setMarkers([])}
+                            style={styles.bubble}
+                        >
+                            <Text>Toque para crear un marcador</Text>
+
+                        </TouchableOpacity>
+                    </Spacer>
                 </View>
             </View>
         </View>
@@ -124,7 +157,7 @@ const styles = StyleSheet.create({
     },
     TextInput: {
         fontSize: 25,
+        textAlign: "center",
     }
 });
-
 export default Location;
